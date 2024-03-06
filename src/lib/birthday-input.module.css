@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    gap: 9px;
+}
+    
+.input {
+    border: 2px solid var(--bday-input-border-color,#dee1eb);
+    border-radius: 6px;
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    outline: none;
+    padding: 9px 18px;
+    text-transform: none;
+    width: 100%;
+}
+
+.error {
+    border-color: var(--bday-input-error-color,#EF476F);
+}
+
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.container input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+  
