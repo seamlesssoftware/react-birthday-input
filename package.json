@@ -1,7 +1,6 @@
 {
   "name": "react-birthday-input",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +8,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "peerDependencies": {
     "classnames": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -28,6 +27,7 @@
     "vite": "^5.1.4",
     "vite-plugin-dts": "^3.7.3"
   },
+  "files": ["dist"],
   "main": "./dist/react-birthday-input.umd.js",
   "module": "./dist/react-birthday-input.es.js",
   "types": "./dist/react-birthday-input.d.ts",
