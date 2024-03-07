@@ -1,6 +1,6 @@
 {
   "name": "react-birthday-input",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,7 +34,8 @@
   "exports": {
     ".": {
       "import": "./dist/react-birthday-input.es.js",
-      "require": "./dist/react-birthday-input.umd.js"
+      "require": "./dist/react-birthday-input.umd.js",
+      "types": "./dist/react-birthday-input.d.ts"
     }
   }
 }

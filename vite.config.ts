@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     react(),         
     dts({
+      rollupTypes: true,
       insertTypesEntry: true,
+      include: "./src/lib/"
     }),
   ],
   build: {
