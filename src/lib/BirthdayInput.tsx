@@ -17,10 +17,13 @@ const isValueValid = (part: DatePart, value: string) => {
 };
 
 interface BirthdayInputProps {
-    className?: string ;
+    onChange: (birthday: Date) => void;
+    className?: string;
+    style?: React.CSSProperties;
+    inputStyle?: React.CSSProperties;
 }
 
-export const BirthdayInput = ({ className }: BirthdayInputProps) => {
+export const BirthdayInput = ({ onChange, className, style, inputStyle }: BirthdayInputProps) => {
     const format = getDateFormat();
     const inputRefs = useRef<InputRefs>({
         MM: null, 
@@ -38,7 +41,7 @@ export const BirthdayInput = ({ className }: BirthdayInputProps) => {
         YYYY: false,
     });
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>, part: DatePart, idx: number) => {
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>, part: DatePart, idx: number) => {
         const value = e.target.value;
         const maxLength = dateRestrictions[part].maxLength;
 
@@ -96,29 +99,27 @@ export const BirthdayInput = ({ className }: BirthdayInputProps) => {
     };
 
     useEffect(() => {
-        const date =
+        onChange(
             new Date(
                 parseInt(inputValues.YYYY),
                 parseInt(inputValues.MM) - 1,
                 parseInt(inputValues.DD)
             )
-        ;
-        console.log(date);
-
-        /* TODO: set value, add controller */
-    }, [inputValues.MM, inputValues.DD, inputValues.YYYY]);
+        );
+    }, [inputValues.MM, inputValues.DD, inputValues.YYYY, onChange]);
 
     return (
-            <div className={className ?? "bday_input"}>
+            <div className={className ?? "bday_input"} style={style}>
                 {format?.map((part, idx) => (
                     <input
+                        style={inputStyle}
                         key={idx}
                         className={(!inputsValid[part] && inputValues[part]) ? "invalid" : undefined}
                         type="number"
                         placeholder={part}
                         value={inputValues[part]}
                         ref={(ref) => (inputRefs.current[part] = ref)}
-                        onChange={(e) => onChange(e, part, idx)}
+                        onChange={(e) => onInputChange(e, part, idx)}
                         onBlur={(e) => onBlur(e, part)}
                         onKeyDown={(e) => onKeyDown(e, idx)}
                         {...dateRestrictions[part]}
