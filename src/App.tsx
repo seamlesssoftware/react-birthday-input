@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <BirthdayInput/>
+      <BirthdayInput onChange={console.log}/>
     </>
   )
 }

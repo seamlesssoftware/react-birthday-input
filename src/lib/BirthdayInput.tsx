@@ -99,7 +99,7 @@ export const BirthdayInput = ({ onChange, className, style, inputStyle }: Birthd
     };
 
     useEffect(() => {
-        onChange(
+        onChange?.(
             new Date(
                 parseInt(inputValues.YYYY),
                 parseInt(inputValues.MM) - 1,
