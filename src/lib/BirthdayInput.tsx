@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import cx from "classnames";
 
 import { getDateFormat, leftPadWithZeros } from "./util";
 
-import css from "./birthday-input.module.css";
+import "./birthday-input.css";
 import { DatePart, InputRefs, dateRestrictions } from "./types.d";
 
 const isValueValid = (part: DatePart, value: string) => {
@@ -18,11 +17,10 @@ const isValueValid = (part: DatePart, value: string) => {
 };
 
 interface BirthdayInputProps {
-    containerClassnames?: string | string[];
-    inputClassnames?: string | string[];
+    className?: string ;
 }
 
-export const BirthdayInput = ({ containerClassnames, inputClassnames }: BirthdayInputProps) => {
+export const BirthdayInput = ({ className }: BirthdayInputProps) => {
     const format = getDateFormat();
     const inputRefs = useRef<InputRefs>({
         MM: null, 
@@ -111,15 +109,11 @@ export const BirthdayInput = ({ containerClassnames, inputClassnames }: Birthday
     }, [inputValues.MM, inputValues.DD, inputValues.YYYY]);
 
     return (
-            <div className={cx(css.container, containerClassnames)}>
+            <div className={className ?? "bday_input"}>
                 {format?.map((part, idx) => (
                     <input
                         key={idx}
-                        className={cx(
-                            css.input,
-                            inputClassnames,
-                            !inputsValid[part] && inputValues[part] && css.error
-                        )}
+                        className={(!inputsValid[part] && inputValues[part]) ? "invalid" : undefined}
                         type="number"
                         placeholder={part}
                         value={inputValues[part]}

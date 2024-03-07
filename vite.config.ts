@@ -24,7 +24,7 @@ export default defineConfig({
         fileName: (format) => `react-birthday-input.${format}.js`,
     },
     rollupOptions: {
-        external: ['react', 'react-dom', 'react/jsx-runtime', 'classnames'],
+        external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
 },
 })
