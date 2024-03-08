@@ -58,3 +58,8 @@ You can customize the style of `react-birthday-input` by passing a `className` o
 ## Contributing
 
 Contributions are welcome! Whether it's submitting a bug report, a feature request, or a pull request, all contributions are appreciated. Please ensure you follow our contributing guidelines when submitting your contributions.
+
+
+## License
+
+react-birthday-input is available under the MIT license. See the LICENSE file for more info.
