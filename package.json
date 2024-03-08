@@ -1,12 +1,13 @@
 {
   "name": "react-birthday-input",
-  "version": "1.0.8",
+  "version": "1.0.11",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish_npm": "rm -rf ./dist/ && npm run build && npm publish"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -38,5 +39,9 @@
       "types": "./dist/react-birthday-input.d.ts"
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seamlesssoftware/react-birthday-input.git"
+  }
 }
