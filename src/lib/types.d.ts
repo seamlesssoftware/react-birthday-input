@@ -6,6 +6,18 @@ interface InputRefs {
     YYYY: HTMLInputElement | null;
 }
 
+interface InputValues {
+    MM: string;
+    DD: string;
+    YYYY: string;
+}
+
+interface InputsValid {
+    MM: boolean;
+    DD: boolean;
+    YYYY: boolean;
+}
+
 interface DateRestriction {
     min: number;
     max: number;

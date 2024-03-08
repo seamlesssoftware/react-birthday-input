@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { getDateFormat, leftPadWithZeros } from "./util";
 
 import "./birthday-input.css";
-import { DatePart, InputRefs, dateRestrictions } from "./types.d";
+import { DatePart, InputRefs, InputValues, InputsValid, dateRestrictions } from "./types.d";
 
 const isValueValid = (part: DatePart, value: string) => {
     const intValue = parseInt(value);
@@ -17,7 +17,7 @@ const isValueValid = (part: DatePart, value: string) => {
 };
 
 interface BirthdayInputProps {
-    onChange: (birthday: Date) => void;
+    onChange: (birthday: Date | null) => void;
     className?: string;
     style?: React.CSSProperties;
     inputStyle?: React.CSSProperties;
@@ -30,12 +30,12 @@ export const BirthdayInput = ({ onChange, className, style, inputStyle }: Birthd
         DD: null,
         YYYY: null,
     });
-    const [inputValues, setInputValues] = useState({
+    const [inputValues, setInputValues] = useState<InputValues>({
         MM: "",
         DD: "",
         YYYY: "",
     });
-    const [inputsValid, setInputsValid] = useState({
+    const [inputsValid, setInputsValid] = useState<InputsValid>({
         MM: false,
         DD: false,
         YYYY: false,
@@ -98,15 +98,23 @@ export const BirthdayInput = ({ onChange, className, style, inputStyle }: Birthd
         }
     };
 
+    const handleDataChange = useCallback((inputValues: InputValues) => {
+        const { YYYY, MM, DD } = inputValues;
+    
+        const date = new Date(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD));
+    
+        if (date.getFullYear() === parseInt(YYYY) &&
+            date.getMonth() === parseInt(MM) - 1 &&
+            date.getDate() === parseInt(DD)) {
+            onChange?.(date);
+        } else {
+            onChange?.(null);
+        }
+    }, [onChange]);
+
     useEffect(() => {
-        onChange?.(
-            new Date(
-                parseInt(inputValues.YYYY),
-                parseInt(inputValues.MM) - 1,
-                parseInt(inputValues.DD)
-            )
-        );
-    }, [inputValues.MM, inputValues.DD, inputValues.YYYY, onChange]);
+        handleDataChange(inputValues);
+    }, [inputValues, handleDataChange]);
 
     return (
             <div className={className ?? "bday_input"} style={style}>
