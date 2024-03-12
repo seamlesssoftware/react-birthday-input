@@ -17,7 +17,7 @@ const isValueValid = (part: DatePart, value: string) => {
 };
 
 interface BirthdayInputProps {
-    initialValues: InputValues;
+    initialValues?: InputValues;
     onChange: (birthday: Date | null) => void;
     className?: string;
     style?: React.CSSProperties;
